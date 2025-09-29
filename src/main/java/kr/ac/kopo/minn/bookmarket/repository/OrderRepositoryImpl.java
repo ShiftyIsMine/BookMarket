@@ -15,6 +15,13 @@ public class OrderRepositoryImpl implements OrderRepository {
         listOfOrders = new HashMap<>();
         nextOrderId = 2000;
     }
+
+    @Override
+    public Long saveOrder(Long id) {
+        return 0L;
+    }
+
+    @Override
     public Long saveOrder(Order order) {
         order.setId(getNextOrderId());
         listOfOrders.put(order.getOrderId(), order);
@@ -23,5 +30,6 @@ public class OrderRepositoryImpl implements OrderRepository {
     private synchronized long getNextOrderId() {
         return nextOrderId++;
     }
+
 
 }

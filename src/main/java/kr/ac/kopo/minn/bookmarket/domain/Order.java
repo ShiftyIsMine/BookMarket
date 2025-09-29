@@ -26,4 +26,8 @@ public class Order {
     private Map<String, OrderItem> orderitems = new HashMap<>();
 
     private BigDecimal grandtotal;
+
+    public Long getOrderId() {
+        return id;
+    }
 }
