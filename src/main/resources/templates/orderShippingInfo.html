@@ -29,20 +29,15 @@
 
         <div class="p-5 mb-4 bg-body-tertiary rounded-3">
             <div class="container-fluid py-5">
-                <h1 class="display-5 fw-bold">주문 고객 정보</h1>
+                <h1 class="display-5 fw-bold">주문 배송 정보허허</h1>
                 <p class="col-md-8 fs-4">BookMarket</p>
             </div>
         </div>
 
         <div class="row align-items-md-stretch">
-            <form th:object="${customer}" action="/BookMarket/order/orderCustomerInfo" th:method="post">
-                <legend>고객 세부</legend>
-                <div class="mb-3 row">
-                    <label class="col-sm-2">고객 아이디</label>
-                    <div class="col-sm-3">
-                        <input type="text" name="customerId" class="form-control" th:field="*{customerid}"/>
-                    </div>
-                </div>
+            <!--/*@thymesVar id="shipping" type="jdk"*/-->
+            <form th:object="${shipping}" action="/BookMarket/order/orderShippingInfo" th:method="post">
+                <legend>배송 세부</legend>
                 <div class="mb-3 row">
                     <label class="col-sm-2">고객 이름</label>
                     <div class="col-sm-3">
@@ -50,15 +45,15 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label class="col-sm-2">번호</label>
+                    <label class="col-sm-2">배송일</label>
                     <div class="col-sm-3">
-                        <input type="text" name="phone" class="form-control" th:field="*{phone}"/>
+                        <input type="text" name="date" class="form-control" th:field="*{date}" th:placeholder="yyyy/mm/dd"/>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label class="col-sm-2">국가</label>
+                    <label class="col-sm-2">주소</label>
                     <div class="col-sm-3">
-                        <input type="text" name="address.country" class="form-control" th:field="*{address.country}"/>
+                        <input type="text" name="address" class="form-control" th:field="*{address}"/>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -80,8 +75,9 @@
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <div class="col-sm-offset-2 col-sm-10">주소
-                        <button type="submit" class="btn btn-primary">등록</button>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <a href="/BookMarket/order/orderCustomerInfo" class="btn btn-secondary" role="button">이전 화면</a>
+                        <button type="submit" class="btn btn-primary">이전 화면</button>
                         <a href="/BookMarket/order/orderCancelled" class="btn btn-secondary" role="button">취소</a>
                     </div>
 

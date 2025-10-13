@@ -1,13 +1,13 @@
 package kr.ac.kopo.minn.bookmarket.exception;
 
+import lombok.Getter;
+
+@Getter
 public class BookIdException extends RuntimeException {
-    private  String bookId;
+    private final String bookId;
     public BookIdException(String bookId) {
         super();
         this.bookId = bookId;
     }
 
-    public String getBookId() {
-        return bookId;
-    }
 }

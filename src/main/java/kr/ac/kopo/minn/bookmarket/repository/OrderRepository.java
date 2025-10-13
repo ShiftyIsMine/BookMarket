@@ -4,5 +4,7 @@ import kr.ac.kopo.minn.bookmarket.domain.Order;
 
 public interface OrderRepository {
 
+    Long saveOrder(Long id);
+
     Long saveOrder(Order order);
 }

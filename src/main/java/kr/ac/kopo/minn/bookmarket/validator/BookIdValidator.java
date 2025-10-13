@@ -25,10 +25,6 @@ public class BookIdValidator  implements ConstraintValidator<BookId, String> {
             return true;
         }
 
-        if(book != null){
-            return false;
-        }
-
-        return true;
+        return book == null;
     }
 }

@@ -9,7 +9,7 @@ import java.util.*;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
-    private List<Book> listOfBooks = new ArrayList<Book>();
+    private final List<Book> listOfBooks = new ArrayList<Book>();
 
     public BookRepositoryImpl() {
         Book book1 = new Book();
