@@ -2,7 +2,7 @@
   <configuration default="false" name="BookMarketApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <option name="ALTERNATIVE_JRE_PATH" value="openjdk-24" />
     <module name="BookMarket.main" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="kr.ac.kopo.minn.bookmarket.BookMarketApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="kr.ac.kopo.shifty.bookmarket.BookMarketApplication" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
