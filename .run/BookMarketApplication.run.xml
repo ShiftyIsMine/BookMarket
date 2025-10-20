@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="이름이 지정되지 않았습니다" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+  <configuration default="false" name="BookMarketApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH" value="openjdk-24" />
     <module name="BookMarket.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="kr.ac.kopo.minn.bookmarket.BookMarketApplication" />
     <method v="2">
