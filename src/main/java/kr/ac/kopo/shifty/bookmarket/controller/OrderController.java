@@ -155,7 +155,8 @@ public class OrderController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView showEditOrder(@PathVariable(value = "id") Long id) {
-        Order order = orderProService.get(id);
+        Order order;
+        order = orderProService.get(id);
         List<Book> listOfBooks = new ArrayList<Book>();
         for (OrderItem orderItem : order.getOrderitems().values()) {
             String bookId = orderItem.getBookid();
