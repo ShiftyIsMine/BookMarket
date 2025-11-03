@@ -119,8 +119,8 @@ public class OrderController {
     }
 
     @GetMapping("/list")
-    public String viewHomPage(Model model) {
-        return viewPage(1,"orderId","asc",model);
+    public String viewHomePage(Model model) {
+        return viewPage(1,"id","asc",model);
     }
 
     @GetMapping("/page")
@@ -183,7 +183,7 @@ public class OrderController {
 
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute Order order) {
-        Order saveOrder = orderProService.get(order.getOrderId());
+        Order saveOrder = orderProService.get(order.getId());
         saveOrder.setShipping(order.getShipping());
         orderProService.save(saveOrder);
 

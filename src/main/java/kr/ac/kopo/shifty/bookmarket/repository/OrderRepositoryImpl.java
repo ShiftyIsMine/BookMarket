@@ -24,8 +24,8 @@ public class OrderRepositoryImpl implements OrderRepository {
     @Override
     public Long saveOrder(Order order) {
         order.setId(getNextOrderId());
-        listOfOrders.put(order.getOrderId(), order);
-        return order.getOrderId();
+        listOfOrders.put(order.getId(), order);
+        return order.getId();
     }
     private synchronized long getNextOrderId() {
         return nextOrderId++;
