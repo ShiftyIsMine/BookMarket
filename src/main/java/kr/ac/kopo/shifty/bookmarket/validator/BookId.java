@@ -2,13 +2,11 @@ package kr.ac.kopo.shifty.bookmarket.validator;
 
 import jakarta.validation.Constraint;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 @Constraint(validatedBy = BookIdValidator.class)
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
+@Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface BookId {
     String message() default "{BookId.book.bookId}";

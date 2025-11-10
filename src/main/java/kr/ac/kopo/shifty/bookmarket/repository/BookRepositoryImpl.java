@@ -9,7 +9,7 @@ import java.util.*;
 
 @Repository
 public class BookRepositoryImpl implements BookRepository {
-    private final List<Book> listOfBooks = new ArrayList<Book>();
+    private List<Book> listOfBooks = new ArrayList<Book>();
 
     public BookRepositoryImpl() {
         Book book1 = new Book();
@@ -89,7 +89,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public List<Book> getBookListByCategory(String category) {
-        List<Book> booksByCategory = new ArrayList<>();
+        List<Book> booksByCategory = new ArrayList<Book>();
         for (Book book : listOfBooks) {
             if (book.getCategory()!=null && book.getCategory().equals(category)) {
                 booksByCategory.add(book);

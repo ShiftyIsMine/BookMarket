@@ -1,5 +1,8 @@
 package kr.ac.kopo.shifty.bookmarket.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.ToString;
 
@@ -9,6 +12,7 @@ import java.util.Map;
 
 @Data
 @ToString
+
 public class Cart {
     private String cartId;
     private Map<String, CartItem> cartItems;

@@ -12,7 +12,7 @@ function removeFromCart(bookid, cartid){
 }
 
 
-function deleteCart(cartid){
+function deleteCart(cartId){
     if(confirm('모든 도서를 장바구니에서 삭제하시겠습니까?')){
         document.deleteForm.submit();
         setTimeout('location.reload()', 10);

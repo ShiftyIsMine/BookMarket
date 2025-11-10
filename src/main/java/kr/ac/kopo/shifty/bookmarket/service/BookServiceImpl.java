@@ -22,20 +22,17 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getBookById(String bookId) {
-        Book book = bookRepository.getBookById(bookId);
-        return book;
+        return bookRepository.getBookById(bookId);
     }
 
     @Override
     public List<Book> getBookListByCategory(String category) {
-        List<Book> booksByCategory = bookRepository.getBookListByCategory(category);
-        return booksByCategory;
+        return bookRepository.getBookListByCategory(category);
     }
 
     @Override
     public Set<Book> getBookListByFilter(Map<String, List<String>> filter) {
-        Set<Book> booksByFilter = bookRepository.getBookListByFilter(filter);
-        return booksByFilter;
+        return bookRepository.getBookListByFilter(filter);
     }
 
     @Override

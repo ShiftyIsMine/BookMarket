@@ -6,5 +6,5 @@ public interface OrderRepository {
 
     Long saveOrder(Long id);
 
-    Long saveOrder(Order order);
+    void saveOrder(Order order);
 }

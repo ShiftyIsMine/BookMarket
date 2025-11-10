@@ -13,7 +13,7 @@ import java.util.Map;
 public class Order {
     @Id
     @GeneratedValue
-    private long id;
+    private long orderId;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer customer;
@@ -23,11 +23,8 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_order_id")
-    private Map<String, OrderItem> orderitems = new HashMap<>();
+    private Map<String, OrderItem> orderItems = new HashMap<>();
 
-    private BigDecimal grandtotal;
+    private BigDecimal grandTotal;
 
-    public Long getOrderId() {
-        return id;
-    }
 }

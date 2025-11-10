@@ -14,15 +14,15 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private BookRepository bookRepository;
 
-    public void confirmOrder(String bookid,long quantity) {
-        Book bookById = bookRepository.getBookById(bookid);
+    public void confirmOrder(String bookId,long quantity) {
+        Book bookById = bookRepository.getBookById(bookId);
         if(bookById.getUnitsInStock() < quantity) {
             throw new IllegalArgumentException("품절이용");
         }
         bookById.setUnitsInStock(bookById.getUnitsInStock() - quantity);
 
     }
-    public Long saveOrder(Order order) {
-        return orderRepository.saveOrder(order);
+    public void saveOrder(Order order) {
+        orderRepository.saveOrder(order);
     }
 }

@@ -16,7 +16,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,7 @@ public class OrderController {
     @Autowired
     private CartService cartService;
     Order order;
-    List<Book> listofBooks;
+    List<Book> listOfBooks;
 
     @Autowired
     private OrderProService orderProService;
@@ -40,29 +42,39 @@ public class OrderController {
     public String requestCartList(@PathVariable(value = "cartId") String cartId, Model model) {
         Cart cart =  cartService.validateCart(cartId);
         order = new Order();
-        listofBooks = new ArrayList<Book>();
+        listOfBooks = new ArrayList<Book>();
+
         for(CartItem item : cart.getCartItems().values()){
-            OrderItem orderItem = new OrderItem();
+
+            OrderItem  orderItem = new  OrderItem();
+
             Book book =item.getBook();
-            listofBooks.add(book);
-            orderItem.setBookid(book.getBookId());
-            orderItem.setQuantity(String.valueOf(item.getQuantity()));
-            orderItem.setTotalprice(item.getTotalPrice());
-            order.getOrderitems().put(book.getBookId(), orderItem);
+
+            listOfBooks.add(book);
+
+            orderItem.setBookId(book.getBookId());
+            orderItem.setQuantity(item.getQuantity());
+            orderItem.setTotalPrice(item.getTotalPrice());
+
+            order.getOrderItems().put(book.getBookId(), orderItem);
         }
+
         order.setCustomer(new Customer());
         order.setShipping(new Shipping());
-        order.setGrandtotal(cart.getGrandTotal());
+        order.setGrandTotal(cart.getGrandTotal());
+
         return "redirect:/order/orderCustomerInfo";
     }
     @GetMapping( "/orderCustomerInfo")
     public String requestCustomerInfoForm(Model model) {
+
         model.addAttribute("customer", order.getCustomer());
         return "orderCustomerInfo";
     }
 
     @PostMapping("/orderCustomerInfo")
-    public String requestCustomerInfo(@ModelAttribute Customer  customer, Model model) {
+    public String requestCustomerInfo( @ModelAttribute Customer  customer, Model model) {
+
         order.setCustomer(customer);
         return "redirect:/order/orderShippingInfo";
     }
@@ -73,19 +85,25 @@ public class OrderController {
         return "orderShippingInfo";
     }
 
+
     @PostMapping("/orderShippingInfo")
     public String requestShippingInfo(@Valid @ModelAttribute Shipping  shipping, BindingResult bindingResult, Model model) {
+
         if(bindingResult.hasErrors())
             return "orderShippingInfo";
+
         order.setShipping(shipping);
+
         model.addAttribute("order",order);
         return "redirect:/order/orderConfirmation";
     }
 
     @GetMapping("/orderConfirmation")
     public String requestConfirmation( Model model ) {
-        model.addAttribute("bookList",listofBooks);
+
+        model.addAttribute("bookList",listOfBooks);
         model.addAttribute("order",order);
+
         return "orderConfirmation";
     }
 
@@ -97,15 +115,19 @@ public class OrderController {
     }
 
     @GetMapping("/orderFinished")
-    public String requestFinished(HttpServletRequest request, Model model ) {
+    public String requestFinished( HttpServletRequest request, Model model ) {
         // Long orderId=
         orderService.saveOrder(order);
+
         //order.setOrderId(orderId);
         model.addAttribute("order",order);
+
         HttpSession session = request.getSession(false);
+
         if(session != null) {
             session.invalidate();
         }
+
         return "orderFinished";
     }
 
@@ -120,7 +142,7 @@ public class OrderController {
 
     @GetMapping("/list")
     public String viewHomePage(Model model) {
-        return viewPage(1,"id","asc",model);
+        return viewPage(1,"orderId","asc",model);
     }
 
     @GetMapping("/page")
@@ -139,11 +161,11 @@ public class OrderController {
     }
 
     @GetMapping("/view/{id}")
-    public ModelAndView viewOrder(@PathVariable(value = "id") Long id) {
+    public ModelAndView viewOrder(@PathVariable(name = "id") Long id) {
         Order order = orderProService.get(id);
         List<Book> listOfBooks = new ArrayList<Book>();
-        for(OrderItem orderItem : order.getOrderitems().values()){
-            String bookId = orderItem.getBookid();
+        for(OrderItem orderItem : order.getOrderItems().values()){
+            String bookId = orderItem.getBookId();
             Book book = bookService.getBookById(bookId);
             listOfBooks.add(book);
         }
@@ -155,11 +177,10 @@ public class OrderController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView showEditOrder(@PathVariable(value = "id") Long id) {
-        Order order;
-        order = orderProService.get(id);
+        Order order = orderProService.get(id);
         List<Book> listOfBooks = new ArrayList<Book>();
-        for (OrderItem orderItem : order.getOrderitems().values()) {
-            String bookId = orderItem.getBookid();
+        for (OrderItem orderItem : order.getOrderItems().values()) {
+            String bookId = orderItem.getBookId();
             Book book = bookService.getBookById(bookId);
             listOfBooks.add(book);
         }
@@ -170,8 +191,8 @@ public class OrderController {
         return modelAndView;
     }
     @GetMapping("/delete/{id}")
-    public String deleteOrder(@PathVariable(value = "id") Long id) {
-        Order order = orderProService.get(id);
+    public String deleteOrder(@PathVariable(name = "id") Long id) {
+        orderProService.delete(id);
         return "redirect:/order/list";
     }
 
@@ -183,7 +204,7 @@ public class OrderController {
 
     @PostMapping("/save")
     public String saveProduct(@ModelAttribute Order order) {
-        Order saveOrder = orderProService.get(order.getId());
+        Order saveOrder = orderProService.get(order.getOrderId());
         saveOrder.setShipping(order.getShipping());
         orderProService.save(saveOrder);
 

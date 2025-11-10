@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Repository
 public class CartRepositoryImpl implements CartRepository {
-    private final Map<String, Cart> listOfCarts;
+    private Map<String, Cart> listOfCarts;
 
     public CartRepositoryImpl() {
         listOfCarts = new HashMap<String, Cart>();

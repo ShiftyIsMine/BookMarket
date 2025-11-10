@@ -8,11 +8,11 @@ import java.util.Map;
 
 @Repository
 public class OrderRepositoryImpl implements OrderRepository {
-    private final Map<Long, Order> listOfOrders;
+    private Map<Long, Order> listOfOrders;
     private long nextOrderId;
 
     public OrderRepositoryImpl() {
-        listOfOrders = new HashMap<>();
+        listOfOrders = new HashMap<Long, Order>();
         nextOrderId = 2000;
     }
 
@@ -22,10 +22,10 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public Long saveOrder(Order order) {
-        order.setId(getNextOrderId());
-        listOfOrders.put(order.getId(), order);
-        return order.getId();
+    public void saveOrder(Order order) {
+        order.setOrderId(getNextOrderId());
+        listOfOrders.put(order.getOrderId(), order);
+//        return order.getOrderId();
     }
     private synchronized long getNextOrderId() {
         return nextOrderId++;

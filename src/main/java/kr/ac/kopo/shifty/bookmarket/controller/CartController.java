@@ -24,7 +24,9 @@ public class CartController {
     @GetMapping
     public String requestCartId(HttpServletRequest request) {
         System.out.println("Call requestCartId()");
-        String sessionId = request.getSession().getId();
+        String sessionId;
+        sessionId = request.getSession(true).getId();
+        request.getSession(true).setAttribute("cartId", sessionId);
         return "redirect:/cart/" + sessionId;
     }
 

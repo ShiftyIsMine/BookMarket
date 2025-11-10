@@ -6,26 +6,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
-    <script src="/BookMarket/js/controllers.js"></script>
+    <script src="/js/controllers.js"></script>
 
 </head>
 <body>
 <main>
     <div class="container py-4">
-        <header class="pb-3 mb-4 border-bottom">
-            <a href="/BookMarket/home" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     width="32px" height="32px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-                    <g>
-                        <path fill="#231F20" d="M1.59,0.805C0.59,1.562,0,2.746,0,4v48c0,1.785,1.184,3.355,2.902,3.848L28,64V8L5.098,0.152
-                            C3.895-0.188,2.594,0.051,1.59,0.805z"/>
-                        <path fill="#231F20" d="M62.41,0.805c-1.004-0.754-2.309-0.992-3.508-0.652L36,8v56l25.098-8.152C62.816,55.355,64,53.785,64,52V4
-                            C64,2.746,63.41,1.562,62.41,0.805z"/>
-                    </g>
-                </svg>
-                <span class="fs-4">&nbsp;&nbsp;BookMarket</span>
-            </a>
-        </header>
+        <th:block th:replace="~{/modules/header}">
+        </th:block>
 
         <div class="p-5 mb-4 bg-body-tertiary rounded-3">
             <div class="container-fluid py-5">
@@ -52,36 +40,34 @@
                 </div>
                 <table class="table table-hover">
                     <tr>
-                        <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=orderid&sortDirection='+${reverseSortDir}}">주문 ID</a></th>
+                        <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=orderId&sortDirection='+${reverseSortDir}}">주문 ID</a></th>
                         <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=customer_id&sortDirection='+${reverseSortDir}}">고객 ID</a></th>
                         <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=shipping_id&sortDirection='+${reverseSortDir}}">배송 주우소</a></th>
                         <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=grandtotal&sortDirection='+${reverseSortDir}}">총액</a></th>
-                        <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=orderid&sortDirection='+${reverseSortDir}}">비고</a></th>
+                        <th><a th:href="@{'/order/page?pageNum=' + ${currentPage} + '&sortField=orderId&sortDirection='+${reverseSortDir}}">비고</a></th>
                     </tr>
                     <form name="removeForm" id="removeForm" method="post">
                         <input type="hidden" name="_method" value="delete"/>
                         <div th:each="order:${orderList}">
                             <tr>
-                                <td th:text="${order.id}"></td>
-                                <td th:text="${order.customer.id}"></td>
-                                <td th:text="${order.shipping.address}"></td>
-                                <td th:text="${order.grandtotal}"></td>
+                                <td th:text="${order.orderId}"></td>
+                                <td th:text="${order.customer.customerId}"></td>
+                                <td th:text="${order.shipping.address.addressName}"></td>
+                                <td th:text="${order.grandTotal}"></td>
                                 <td>
-                                    <a th:href="@{'/order/view/' + ${order.id}}"><span class="badge text-bg-secondary" th:text="상셍ㅇㅇ"></span></a>
-                                    <a th:href="@{'/order/edit/' + ${order.id}}"><span class="badge text-bg-info" th:text="수정"></span></a>
-                                    <a th:href="@{'/order/delete/' + ${order.id}}"><span class="badge text-bg-danger" th:text="삭제"></span></a>
+                                    <a th:href="@{'/order/view/' + ${order.orderId}}"><span class="badge text-bg-secondary" th:text="상셍ㅇㅇ"></span></a>
+                                    <a th:href="@{'/order/edit/' + ${order.orderId}}"><span class="badge text-bg-info" th:text="수정"></span></a>
+                                    <a th:href="@{'/order/delete/' + ${order.orderId}}"><span class="badge text-bg-danger" th:text="삭제"></span></a>
                                 </td>
                             </tr>
                         </div>
                     </form>
                 </table>
                 <div>&nbsp;</div>
-                <div><i>Sorted by [[${sortField}]] in [[${sortDirection}]]</i></div>
+                <div><i>Sorted by [[${sortField}]] in [[${sortDirection}]] order</i></div>
             </div>
         </div>
-        <footer class="pt-3 mt-4 text-body-secondary border-top">
-            <span class="text-body-secondary">&copy;2025 BookMarket</span>
-        </footer>
+        <th:block th:replace="~{/modules/footer}"></th:block>
     </div>
 </main>
 </body>

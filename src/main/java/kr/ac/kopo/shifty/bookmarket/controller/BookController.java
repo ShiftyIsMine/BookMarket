@@ -51,16 +51,17 @@ public class BookController {
     @GetMapping("/all")
     public ModelAndView requestAllBookList() {
         ModelAndView modelV = new ModelAndView();
-        modelV.setViewName("books");
+
         List<Book> bookList = bookService.getAllBookList();
         modelV.addObject("bookList", bookList);
+        modelV.setViewName("books");
         return modelV;
     }
 
     @GetMapping("/book")
     public String requestBookById(@RequestParam("id") String bookId, Model model) {
-        Book book = bookService.getBookById(bookId);
-        model.addAttribute("book", book);
+        Book bookById = bookService.getBookById(bookId);
+        model.addAttribute("book", bookById);
         return "book";
     }
 

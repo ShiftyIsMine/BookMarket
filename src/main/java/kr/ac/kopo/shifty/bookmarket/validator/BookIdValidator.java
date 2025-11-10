@@ -7,24 +7,29 @@ import kr.ac.kopo.shifty.bookmarket.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class BookIdValidator  implements ConstraintValidator<BookId, String> {
+public class BookIdValidator implements ConstraintValidator<BookId, String>{
+
     @Autowired
     private BookService bookService;
 
+
     @Override
     public void initialize(BookId constraintAnnotation) {
+        // TODO Auto-generated method stub
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        Book book = null;
+        Book book;
         try {
             book = bookService.getBookById(value);
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return true;
         }
-
-        return book == null;
+        if(book!= null) {
+            return false;
+        }
+        return true;
     }
 }

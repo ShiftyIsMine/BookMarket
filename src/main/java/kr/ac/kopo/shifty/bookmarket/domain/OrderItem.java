@@ -12,15 +12,13 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-@Getter
-@Setter
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String bookid;
-    private String quantity;
-    private BigDecimal totalprice;
+    private Long id;
+    private String bookId;
+    private int quantity;
+    private BigDecimal totalPrice;
 
 
 }

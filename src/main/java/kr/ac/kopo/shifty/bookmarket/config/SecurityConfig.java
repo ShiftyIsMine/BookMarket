@@ -1,5 +1,6 @@
 package kr.ac.kopo.shifty.bookmarket.config;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+@AllArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -26,7 +28,7 @@ public class SecurityConfig {
     public UserDetailsService users(){
         UserDetails admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder().encode("admin1234"))
+                .password(passwordEncoder().encode("1234"))
                 .roles("ADMIN")
                 .build();
         return new InMemoryUserDetailsManager(admin);
@@ -46,6 +48,8 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/books/add")
+                        .defaultSuccessUrl("/order/list")
+                        .defaultSuccessUrl("/")
                         .failureUrl("/loginfailed")
                         .usernameParameter("username")
                         .passwordParameter("password")
