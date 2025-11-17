@@ -1,4 +1,4 @@
-package kr.ac.kopo.shifty.bookmarket.controller;
+package kr.ac.kopo.shifty.bookmarket.domain;
 
 
 import lombok.Getter;

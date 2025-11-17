@@ -1,6 +1,5 @@
-package kr.ac.kopo.shifty.bookmarket.controller;
+package kr.ac.kopo.shifty.bookmarket.domain;
 
-import kr.ac.kopo.shifty.bookmarket.domain.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
