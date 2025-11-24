@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
+
 @Getter @Setter
 public class MemberFormDto {
 
@@ -17,7 +18,7 @@ public class MemberFormDto {
 	 
 	
 	 @NotEmpty(message = "비밀번호도 필수")
-    @Length(min=8, max=16, message = "비밀번호는 6자 이상, 16자 이하로 입력해")
+    @Length(min=8, max=16, message = "비밀번호는 8자 이상, 16자 이하로 입력해")
     private String password;
 	
 	
