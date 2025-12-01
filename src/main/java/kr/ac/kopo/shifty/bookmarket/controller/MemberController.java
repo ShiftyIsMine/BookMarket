@@ -19,13 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value = "/members")
 public class MemberController {
 
-
     @Autowired
     MemberService memberService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
-
 
     @GetMapping(value = "/add")
     public String requestAddMemberForm(Model model){
@@ -40,19 +38,15 @@ public class MemberController {
         if(bindingResult.hasErrors()){
             return "member/addMember";
         }
-
         try {
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
         } catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
-
             return "member/addMember";
         }
-
-        return "redirect:/members";
+        return "redirect:/";
     }
-
 
     @GetMapping(value = "/update/{memberId}")
     public String requestUpdateMemberForm(@PathVariable(name = "memberId") String memberId, Model model){
@@ -67,7 +61,6 @@ public class MemberController {
         if(bindingResult.hasErrors()){
             return "member/updateMember";
         }
-
         try {
             Member member = Member.createMember(memberFormDto, passwordEncoder);
             memberService.saveMember(member);
@@ -75,7 +68,6 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "member/addMember";
         }
-
         return "redirect:/members";
     }
 

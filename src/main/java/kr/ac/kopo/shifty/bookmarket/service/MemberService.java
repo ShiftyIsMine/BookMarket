@@ -24,14 +24,14 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
-    public Member getMemberById(String memberId){
-        Member member = memberRepository.findByMemberId(memberId);
+    public Member getMemberById(String id){
+        Member member = memberRepository.findByMemberId(id);
         System.out.println(member.getMemberId());
         return member;
     }
 
-    public void deleteMember(String memberId){
-        Member member = memberRepository.findByMemberId(memberId);
+    public void deleteMember(String id){
+        Member member = memberRepository.findByMemberId(id);
         memberRepository.deleteById(member.getNum());
 
 
@@ -45,11 +45,11 @@ public class MemberService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
 
-        Member member = memberRepository.findByMemberId(memberId);
+        Member member = memberRepository.findByMemberId(id);
         if(member == null){
-            throw new UsernameNotFoundException(memberId+"이/가 없는데여");
+            throw new UsernameNotFoundException(id+"이/가 없는데여");
         }
 
         return User.builder()

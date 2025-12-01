@@ -122,11 +122,8 @@ public class OrderController {
         //order.setOrderId(orderId);
         model.addAttribute("order",order);
 
-        HttpSession session = request.getSession(false);
+        cartService.delete(request.getParameter("cartId"));
 
-        if(session != null) {
-            session.invalidate();
-        }
 
         return "orderFinished";
     }

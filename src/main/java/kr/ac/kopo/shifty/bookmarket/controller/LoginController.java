@@ -1,5 +1,7 @@
 package kr.ac.kopo.shifty.bookmarket.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
     @GetMapping("/login")
-    public String login() {
+    public String login(HttpServletRequest request) {
         return "login";
     }
     @GetMapping("/loginfailed")
@@ -17,7 +19,11 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout() {
+    public String logout(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
         return "login";
     }
 }
