@@ -32,7 +32,7 @@ public class HomeController {
             return "redirect:/login";
 
         Member member = memberService.getMemberById(userId);
-
+//        httpServletRequest.getSession().invalidate();
         HttpSession session = httpServletRequest.getSession(true);
         session.setAttribute("userLoginInfo", member);
         return "welcome";
