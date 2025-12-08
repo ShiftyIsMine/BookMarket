@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>도서 상세 정보</title>
@@ -47,7 +47,9 @@
                     <a th:href="'javascript:addToCart(\''+ ${book.bookId} +'\')'" class="btn btn-primary">도서주문 &raquo;</a>
                     <a href="/BookMarket/cart" class="btn btn-warning" role="button">장바구니 &raquo;</a>
                     <a href="/BookMarket/books" class="btn btn-secondary" role="button">도서목록 &raquo;</a>
-                </form>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/BookMarket/books/update?id='+${book.bookId}" class="btn btn-success"> 수정&raquo;</a>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')"  th:href="'javascript:deleteConfirm(\''+${book.bookId}+'\')'" class="btn btn-danger" > 삭제 &raquo; </a>
+            </form>
             </div>
         </div>
 

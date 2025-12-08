@@ -138,6 +138,8 @@ public class BookRepositoryImpl implements BookRepository {
                 book.getReleaseDate(), book.getCondition(), book.getFileName());
     }
 
+
+
     public void setUpdateBook(Book book) {
         if (book.getFileName() != null) {
             String SQL = "UPDATE Book SET b_name = ?, b_unitPrice = ?, b_author = ?, b_description = ?, b_publisher = ?, b_category = ?, b_unitsInStock = ?,b_releaseDate = ?, b_condition = ?, b_fileName = ?  where b_bookId = ? ";

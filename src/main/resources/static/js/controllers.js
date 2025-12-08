@@ -18,3 +18,8 @@ function deleteCart(cartId){
         setTimeout('location.reload()', 10);
     }
 }
+
+function deleteConfirm(id){
+    if (confirm("삭제한다요?") == true) location.href ="/BookMarket/books/delete?id="+id;
+    else return;
+}
